@@ -1,41 +1,52 @@
-# Print Array Elements
+# Leaders in an Array
 
 ## 📌 Problem Summary
 
-Given an integer array, print all its elements in the same order, separated by a single space.
+Given an integer array, identify all the **leader elements**.
+
+A **leader** is an element that is **greater than or equal to every element to its right**. The rightmost element is always considered a leader.
 
 ---
 
 ## 🎯 Objective
 
-Traverse the array and display each element separated by a space without printing an extra newline at the end.
+Find and return all leader elements in the array while preserving their original order.
 
 ---
 
 ## 📚 Concepts Used
 
-- Arrays in Java
-- Traversing an array
-- `for` loop
-- Output formatting
+- Arrays
+- Reverse Traversal
+- Maximum Element Tracking
+- ArrayList
 
 ---
 
 ## 💡 Approach
 
-1. Start from the first element of the array.
-2. Traverse the array using a loop.
-3. Print each element followed by a space.
-4. Continue until all elements have been printed.
+An efficient solution is to traverse the array from **right to left**.
+
+1. Start from the last element, which is always a leader.
+2. Maintain a variable `maxRight` to store the maximum element encountered so far.
+3. Traverse the array in reverse.
+4. If the current element is greater than or equal to `maxRight`, it is a leader.
+5. Update `maxRight` and store the leader.
+6. Since the traversal is from right to left, reverse the collected leaders before returning them.
 
 ---
 
 ## 📝 Algorithm
 
-1. Receive the input array.
-2. Iterate from index `0` to `arr.length - 1`.
-3. Print the current element followed by a space.
-4. End after printing all elements.
+1. Initialize an empty list to store leaders.
+2. Set `maxRight` as the last element of the array.
+3. Add the last element to the list.
+4. Traverse the array from the second-last element to the first.
+5. If the current element is greater than or equal to `maxRight`:
+   - Add it to the list.
+   - Update `maxRight`.
+6. Reverse the list to restore the original order.
+7. Return the list of leaders.
 
 ---
 
@@ -43,35 +54,21 @@ Traverse the array and display each element separated by a space without printin
 
 **O(n)**
 
-Each element of the array is visited exactly once.
+The array is traversed once, followed by reversing the result list.
 
 ---
 
 ## 💾 Space Complexity
 
-**O(1)**
+**O(n)**
 
-No additional data structures are used.
-
----
-
-## 💻 Java Solution
-
-```java
-class Solution {
-    public static void printArray(int arr[]) {
-        for (int element : arr) {
-            System.out.print(element + " ");
-        }
-    }
-}
-```
+Additional space is required to store the leader elements.
 
 ---
 
 ## 📖 Explanation
 
-The solution traverses the array using a loop and prints every element in sequence. Each element is followed by a space to maintain the required output format.
+Instead of checking every element against all elements to its right (which would take **O(n²)** time), the optimized approach scans the array from right to left while maintaining the largest element seen so far. Whenever an element is greater than or equal to this maximum, it is identified as a leader.
 
 ---
 
@@ -80,37 +77,53 @@ The solution traverses the array using a loop and prints every element in sequen
 ### Input
 
 ```text
-arr = [54, 43, 2, 1, 5]
+arr = [4, 7, 1, 0]
 ```
 
 ### Output
 
 ```text
-54 43 2 1 5
+[7, 1, 0]
 ```
+
+**Explanation:**
+
+- `0` is the rightmost element, so it is a leader.
+- `1` is greater than `0`.
+- `7` is greater than `1` and `0`.
+- `4` is not greater than `7`, so it is not a leader.
+
+---
 
 ### Input
 
 ```text
-arr = [324, 5, 2, 2]
+arr = [10, 22, 12, 3, 0, 6]
 ```
 
 ### Output
 
 ```text
-324 5 2 2
+[22, 12, 6]
 ```
+
+**Explanation:**
+
+- `6` is the rightmost element, so it is a leader.
+- `12` is greater than `3`, `0`, and `6`.
+- `22` is greater than every element to its right.
+- The remaining elements are not leaders.
 
 ---
 
 ## 🎓 Key Learning
 
-- Learn how to traverse an array efficiently.
-- Understand the use of loops for processing array elements.
-- Practice formatted output in Java.
-- Enhanced `for-each` loops provide a clean way to iterate through arrays when the index is not required.
+- Learn how reverse traversal can simplify array problems.
+- Understand how maintaining a running maximum eliminates unnecessary comparisons.
+- Practice optimizing solutions from **O(n²)** to **O(n)**.
+- Recognize reverse traversal as a common technique in array-based interview problems.
 
 ---
 
 **Difficulty:** 🟢 Easy  
-**Language:** Java
+**Language:** ☕ Java

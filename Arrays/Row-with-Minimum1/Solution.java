@@ -9,7 +9,6 @@ class Solution {
                 if(mat[i][j] == 1){
                     count ++;
                 }
-                
             }
             if(count < minCount){
                 minCount = count;

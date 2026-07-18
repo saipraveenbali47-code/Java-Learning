@@ -1,49 +1,55 @@
-# Print Array Elements
+# Row with Minimum 1s
 
 ## 📌 Problem Summary
 
-Given an integer array, print all its elements in the same order, separated by a single space.
+Given a binary matrix of size **n × m**, identify the row that contains the minimum number of **1's**. If multiple rows have the same minimum count, return the **smallest (1-based) row index**.
 
 ---
 
 ## 🎯 Objective
 
-Traverse the array and display each element separated by a space without printing an extra newline at the end.
+Find and return the index of the row containing the fewest number of `1`s.
 
 ---
 
 ## 📚 Concepts Used
 
-- Arrays in Java
-- Traversing an array
-- `for` loop
-- Output formatting
+- 2-D Arrays
+- Matrix Traversal
+- Nested Loops
+- Counting
+- Conditional Statements
 
 ---
 
 ## 💡 Approach
 
-1. Start from the first element of the array.
-2. Traverse the array using a loop.
-3. Print each element followed by a space.
-4. Continue until all elements have been printed.
+1. Initialize variables to keep track of the minimum number of `1`s and the corresponding row index.
+2. Traverse each row of the matrix.
+3. Count the number of `1`s present in the current row.
+4. Compare the count with the current minimum.
+5. If a smaller count is found, update the minimum count and store the current row index.
+6. If multiple rows have the same minimum count, retain the first occurrence.
+7. Return the row index using **1-based indexing**.
 
 ---
 
 ## 📝 Algorithm
 
-1. Receive the input array.
-2. Iterate from index `0` to `arr.length - 1`.
-3. Print the current element followed by a space.
-4. End after printing all elements.
+1. Initialize `minCount` with a very large value.
+2. Initialize `answer` to `1`.
+3. Iterate through each row.
+4. Count the number of `1`s in that row.
+5. If the count is less than `minCount`, update both `minCount` and `answer`.
+6. After traversing all rows, return `answer`.
 
 ---
 
 ## ⏱️ Time Complexity
 
-**O(n)**
+**O(n × m)**
 
-Each element of the array is visited exactly once.
+Each element of the matrix is visited exactly once.
 
 ---
 
@@ -51,27 +57,13 @@ Each element of the array is visited exactly once.
 
 **O(1)**
 
-No additional data structures are used.
-
----
-
-## 💻 Java Solution
-
-```java
-class Solution {
-    public static void printArray(int arr[]) {
-        for (int element : arr) {
-            System.out.print(element + " ");
-        }
-    }
-}
-```
+Only a few extra variables are used for counting and tracking the result.
 
 ---
 
 ## 📖 Explanation
 
-The solution traverses the array using a loop and prints every element in sequence. Each element is followed by a space to maintain the required output format.
+The solution examines each row individually and counts the number of `1`s present. While traversing, it keeps track of the row with the smallest count of `1`s. If another row has the same count, it is ignored because the first occurrence (smallest index) should be returned.
 
 ---
 
@@ -80,37 +72,61 @@ The solution traverses the array using a loop and prints every element in sequen
 ### Input
 
 ```text
-arr = [54, 43, 2, 1, 5]
+mat = [
+ [1, 1, 1, 1],
+ [1, 1, 0, 0],
+ [0, 0, 1, 1],
+ [1, 1, 1, 1]
+]
 ```
 
 ### Output
 
 ```text
-54 43 2 1 5
+2
 ```
+
+**Explanation:**
+
+- Row 1 → 4 ones
+- Row 2 → 2 ones
+- Row 3 → 2 ones
+- Row 4 → 4 ones
+
+Rows **2** and **3** have the minimum number of `1`s. Since row **2** has the smaller index, the answer is **2**.
+
+---
 
 ### Input
 
 ```text
-arr = [324, 5, 2, 2]
+mat = [
+ [0, 0, 0],
+ [0, 0, 0],
+ [0, 0, 0]
+]
 ```
 
 ### Output
 
 ```text
-324 5 2 2
+1
 ```
+
+**Explanation:**
+
+Every row contains **0** ones. Since all rows have the same count, the smallest row index (**1**) is returned.
 
 ---
 
 ## 🎓 Key Learning
 
-- Learn how to traverse an array efficiently.
-- Understand the use of loops for processing array elements.
-- Practice formatted output in Java.
-- Enhanced `for-each` loops provide a clean way to iterate through arrays when the index is not required.
+- Learn how to count specific elements while traversing a matrix.
+- Understand how to maintain the minimum value during iteration.
+- Practice handling tie-breaking conditions.
+- Strengthen matrix traversal and conditional logic skills.
 
 ---
 
 **Difficulty:** 🟢 Easy  
-**Language:** Java
+**Language:** ☕ Java

@@ -1,8 +1,17 @@
 class Solution {
-    public static void arrayTraversal(int[] arr) {
+    public static int maxSubArray(int[] arr) {
         // Code here
-        for(int i= 0; i < arr.length; i ++){
-            System.out.print(arr[i]+ " ");
+        int max = Integer.MIN_VALUE;
+        int sum = 0;
+        for(int i = 0; i < arr.length; i ++){
+            sum += arr[i];
+            if(sum > max){
+                max = sum;
+            }
+            if(sum < 0){
+                sum = 0;
+            }
         }
+        return max;
     }
 }
